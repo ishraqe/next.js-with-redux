@@ -5,7 +5,7 @@ import withRedux from "next-redux-wrapper";
 import { initStore } from "../store/store";
 import Page from "../components/Pages";
 
-export default withRedux(initStore, { debug: true })(
+export default withRedux(initStore, { debug: false })(
   class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
       let pageProps = {};

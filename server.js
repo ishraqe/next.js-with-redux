@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 
 const verifyJWT = token => {
+  console.log(token, "first token");
   return new Promise(resolve => {
     resolve(jwt.verify(token, "secret account key"));
   });
@@ -14,6 +15,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const isLoggedIn = async (req, res, next) => {
+  console.log(req.cookies, "cookies");
   try {
     await verifyJWT(req.cookies["id_token"]);
     return res.redirect("/profile");
@@ -46,7 +48,9 @@ app
     });
 
     server.get("/signUp", isLoggedIn, (req, res) => {
-      const actualPage = "/signUp";
+      console.log(req.cookies, "second");
+
+      const actualPage = "/auth/signUp";
       return app.render(req, res, actualPage);
     });
 

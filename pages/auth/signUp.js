@@ -5,6 +5,7 @@ import { initStore } from "../../store/store";
 
 class SignUp extends Component {
   render() {
+    console.log(this.props);
     return (
       <div>
         <Main {...this.props} />
