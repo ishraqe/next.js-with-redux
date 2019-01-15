@@ -6,21 +6,20 @@ import { bindActionCreators } from "redux";
 class SignUpComponent extends Component {
   constructor(props) {
     super(props);
-  }
-  componentDidMount() {
-    const user = {
-      name: "ish"
+    this.state = {
+      user: null
     };
-    this.props.createUser(user);
   }
-  handleInputChange = propertyName => event => {
-    const { user } = this.state;
+  handleInputChange = (key, value) => {
     const newUser = {
-      ...user,
-      [propertyName]: event.target.value
+      ...this.state.user,
+      [key]: value
     };
-    console.log(newUser);
     this.setState({ user: newUser });
+  };
+  handleSignUpFormSubmit = event => {
+    event.preventDefault();
+    this.props.createUser(this.state.user);
   };
 
   render() {
@@ -29,25 +28,51 @@ class SignUpComponent extends Component {
         <div className="container">
           <div className="wrapper">
             <div className="authform-container">
-              <form>
+              <form onSubmit={this.handleSignUpFormSubmit}>
                 <div className="input-container">
                   <input
                     type="text"
                     placeholder="First name"
-                    onChange={e => this.handleInputChange(e, "email")}
+                    onChange={e =>
+                      this.handleInputChange("first_name", e.target.value)
+                    }
                   />
                 </div>
                 <div className="input-container">
-                  <input type="text" placeholder="Last name" />
+                  <input
+                    type="text"
+                    placeholder="Last name"
+                    onChange={e =>
+                      this.handleInputChange("last_name", e.target.value)
+                    }
+                  />
                 </div>
                 <div className="input-container">
-                  <input type="text" placeholder="username" />
+                  <input
+                    type="text"
+                    placeholder="username"
+                    onChange={e =>
+                      this.handleInputChange("username", e.target.value)
+                    }
+                  />
                 </div>
                 <div className="input-container">
-                  <input type="text" placeholder="email" />
+                  <input
+                    type="text"
+                    placeholder="email"
+                    onChange={e =>
+                      this.handleInputChange("email", e.target.value)
+                    }
+                  />
                 </div>
                 <div className="input-container">
-                  <input type="text" placeholder="password" />
+                  <input
+                    type="text"
+                    placeholder="password"
+                    onChange={e =>
+                      this.handleInputChange("password", e.target.value)
+                    }
+                  />
                 </div>
                 <div className="button-container">
                   <button className="btn btn-submit">SignUp</button>

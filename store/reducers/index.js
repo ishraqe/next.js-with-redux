@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
-import testReducer from "./testReducer";
-
+import AuthReducer from "./authReducer";
 export default combineReducers({
-  testReducer
+  auth: AuthReducer
 });
