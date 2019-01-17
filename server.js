@@ -18,7 +18,7 @@ const isLoggedIn = async (req, res, next) => {
   console.log(req.cookies, "cookies");
   try {
     await verifyJWT(req.cookies["id_token"]);
-    return res.redirect("/profile");
+    return res.redirect("/home");
   } catch (err) {
     next();
     return;
